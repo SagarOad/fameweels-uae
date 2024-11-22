@@ -8,6 +8,10 @@ const nextConfig = {
       "bacend.famewheels.com",
     ],
   },
+  experimental: {
+    appDir: true,  // Enables the new app directory system in Next.js
+  },
+  reactStrictMode: true, // For improved debugging
 };
 
 export default nextConfig;

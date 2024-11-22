@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";

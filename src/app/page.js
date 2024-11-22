@@ -1,29 +1,54 @@
 "use client";
-import { useEffect, useState } from "react";
-import TopSlider from "@/components/home/TopSlider";
-import OurServices from "@/components/home/OurServices";
-import CarCategory from "@/components/home/CarCategory";
-import CarSuggest from "@/components/home/CarSuggest";
-import FeaturedAds from "@/components/home/FeaturedAds";
-import LiveBiddingBanner from "@/components/home/LiveBiddingBanner";
-import ManagedByUsBanner from "@/components/home/ManagedByUsBanner";
-import BecomeMember from "@/components/home/BecomeMember";
-import PopularNewCars from "@/components/home/PopularNewCars";
-import CarInspectionBanner from "@/components/home/CarInspectionBanner";
-import NewLaunchedCars from "@/components/home/NewLaunchedCars";
-import OurVideos from "@/components/home/OurVideos";
-import AboutBanner from "@/components/home/AboutBanner";
-import PaymentPartners from "@/components/home/PaymentPartners";
-import GetAppBanner from "@/components/home/GetAppBanner";
-// import useFetchMake from "@/customHooks/useFetchMake";
-// import useFetchCities from "@/customHooks/useFetchCities";
+
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+
+// Dynamically import components that are not critical for initial render
+const TopSlider = dynamic(() => import("@/components/home/TopSlider"));
+const OurServices = dynamic(() => import("@/components/home/OurServices"));
+const CarCategory = dynamic(() => import("@/components/home/CarCategory"));
+const CarSuggest = dynamic(() => import("@/components/home/CarSuggest"));
+const FeaturedAds = dynamic(() => import("@/components/home/FeaturedAds"));
+const LiveBiddingBanner = dynamic(() =>
+  import("@/components/home/LiveBiddingBanner")
+);
+const ManagedByUsBanner = dynamic(() =>
+  import("@/components/home/ManagedByUsBanner")
+);
+const BecomeMember = dynamic(() =>
+  import("@/components/home/BecomeMember")
+);
+const PopularNewCars = dynamic(() =>
+  import("@/components/home/PopularNewCars")
+);
+const CarInspectionBanner = dynamic(() =>
+  import("@/components/home/CarInspectionBanner")
+);
+const NewLaunchedCars = dynamic(() =>
+  import("@/components/home/NewLaunchedCars")
+);
+const OurVideos = dynamic(() => import("@/components/home/OurVideos"));
+const AboutBanner = dynamic(() => import("@/components/home/AboutBanner"));
+const PaymentPartners = dynamic(() =>
+  import("@/components/home/PaymentPartners")
+);
+const GetAppBanner = dynamic(() =>
+  import("@/components/home/GetAppBanner")
+);
 
 export default function Home() {
- const ClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-//  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
- console.log(ClientId, "ClientId")
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
+  useEffect(() => {
+    if (!clientId) {
+      console.warn("Google Client ID is not defined in environment variables");
+    } else {
+      console.log("Client ID:", clientId);
+    }
+  }, [clientId]);
+
   return (
-    <>
+    <main>
       <TopSlider />
       <OurServices />
       <CarCategory />
@@ -39,6 +64,6 @@ export default function Home() {
       <AboutBanner />
       <PaymentPartners />
       <GetAppBanner />
-    </>
+    </main>
   );
 }
